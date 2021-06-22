@@ -1,5 +1,8 @@
 package MarioRipoff.Model;
 
+import MarioRipoff.Model.Blocks.Block;
+import MarioRipoff.Model.Blocks.VarBlock;
+
 import java.awt.*;
 
 /**
@@ -10,47 +13,77 @@ import java.awt.*;
 
 public class RenderMap {
 
-    private Color[][] colorMap;
+    private VarBlock[][] blockMap;
 
     public RenderMap(int width, int height){
-        colorMap = new Color[height][width];
+        blockMap = new VarBlock[width][height];
     }
 
-    public Color[][] getColorMap() {
-        return colorMap;
+    public VarBlock[][] getBlock() {
+        return blockMap;
     }
 
-    public void setColorMap(Color[][] colorMap) {
-        this.colorMap = colorMap;
+    public void setBlockMap(VarBlock[][] blockMap) {
+        this.blockMap = blockMap;
     }
 
     public int getHeight(){
-        return colorMap.length;
+        return blockMap.length;
     }
 
     public int getWidth(){
-        return colorMap[0].length;
+        return blockMap[0].length;
     }
     
     public void loadMapFromBlockMap(BlockMap blockMap){
-
+        //TODO convert BlockMap to RenderMap with VarBlocks
     }
 
-    public void setColorPixel(int y, int x, Color color){
-        if (y - 1 <= colorMap.length && x - 1 <= colorMap[0].length){
-            colorMap[y - 1][x - 1] = color;
+    public void setBlock(int yBlock, int xBlock, VarBlock block){
+        if (yBlock - 1 <= blockMap.length && xBlock - 1 <= blockMap[0].length){
+            blockMap[yBlock][xBlock] = block;
         } else {
-            System.err.println("Invalid pixel position");
-            System.err.println("Pixel Y: " + y + ", X: " + x);
+            System.err.println("Invalid block position");
+            System.err.println("Pixel Y: " + yBlock + ", X: " + xBlock);
         }
     }
 
-    public Color getColorPixel(int y, int x){
-        if (y - 1 <= colorMap.length && x - 1 <= colorMap[0].length){
-            return colorMap[y][x];
+    public VarBlock getBlock(int yBlock, int xBlock){
+        if (yBlock - 1 <= blockMap.length && xBlock - 1 <= blockMap[0].length){
+            return blockMap[yBlock][xBlock];
         } else {
-            System.err.println("Invalid pixel position");
-            System.err.println("Pixel Y: " + y + ", X: " + x);
+            System.err.println("Invalid block position");
+            System.err.println("Pixel Y: " + yBlock + ", X: " + xBlock);
+            return null;
+        }
+    }
+
+    public void setBlockPixel(int yBlock, int xBlock, int yBlockPixel, int xBlockPixel, Color color){
+        if (yBlock - 1 <= blockMap.length && xBlock - 1 <= blockMap[0].length){
+            if (yBlockPixel > 0 && yBlockPixel <= 16 && xBlockPixel > 0 && xBlockPixel <= 16){
+                blockMap[yBlock][xBlock].setPixelColor(yBlockPixel, xBlockPixel, color);
+            } else {
+                System.err.println("Invalid pixel position");
+                System.err.println("Pixel Y: " + yBlockPixel + ", X: " + xBlockPixel);
+            }
+        } else {
+            System.err.println("Invalid block position");
+            System.err.println("Pixel Y: " + yBlock + ", X: " + xBlock);
+        }
+    }
+
+    public Color getBlockPixel(int yBlock, int xBlock, int yBlockPixel, int xBlockPixel){
+        if (yBlock - 1 <= blockMap.length && xBlock - 1 <= blockMap[0].length){
+            if (yBlockPixel > 0 && yBlockPixel <= 16 && xBlockPixel > 0 && xBlockPixel <= 16){
+                return blockMap[yBlock][xBlock].getPixelColor(yBlockPixel, xBlockPixel);
+            } else {
+                System.err.println("Invalid pixel position");
+                System.err.println("Pixel Y: " + yBlockPixel + ", X: " + xBlockPixel);
+                return null;
+            }
+        } else {
+            System.err.println("Invalid block position");
+            System.err.println("Pixel Y: " + yBlock + ", X: " + xBlock);
             return null;
         }
     }

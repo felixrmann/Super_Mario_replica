@@ -37,4 +37,14 @@ public abstract class Block {
     public void setBlockMap(Color[][] blockMap) {
         this.blockMap = blockMap;
     }
+
+    public Color getPixelColor(int yPixel, int xPixel){
+        if (yPixel >= 0 && yPixel < 16 && xPixel >= 0 && xPixel < 16){
+            return blockMap[yPixel][xPixel];
+        } else {
+            System.err.println("Invalid pixel position");
+            System.err.println("Pixel Y: " + yPixel + ", X: " + xPixel);
+            return null;
+        }
+    }
 }

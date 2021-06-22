@@ -13,7 +13,7 @@ public class BlockMap {
     private char[][] blockMap;
 
     public BlockMap(int width, int height){
-        blockMap = new char[height][width];
+        blockMap = new char[height + 2][width + 2];
         Arrays.fill(blockMap, ' ');
 
         blockMap[9][0] = 'D';

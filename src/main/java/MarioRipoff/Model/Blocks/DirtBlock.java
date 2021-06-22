@@ -10,6 +10,7 @@ import java.awt.*;
 
 public class DirtBlock extends Block {
 
+    //Colors
     private Color b = new Color(138, 76, 0);
     private Color g = new Color(33, 125, 19);
 
