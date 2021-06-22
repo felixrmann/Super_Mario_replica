@@ -1,7 +1,7 @@
 package MarioRipoff.Model;
 
-import MarioRipoff.Model.Blocks.Block;
 import MarioRipoff.Model.Blocks.VarBlock;
+import MarioRipoff.Util.BlockUtil;
 
 import java.awt.*;
 
@@ -13,35 +13,42 @@ import java.awt.*;
 
 public class RenderMap {
 
-    private VarBlock[][] blockMap;
+    private VarBlock[][] renderMap;
 
     public RenderMap(int width, int height){
-        blockMap = new VarBlock[width][height];
+        renderMap = new VarBlock[width][height];
     }
 
     public VarBlock[][] getBlock() {
-        return blockMap;
+        return renderMap;
     }
 
-    public void setBlockMap(VarBlock[][] blockMap) {
-        this.blockMap = blockMap;
+    public void setRenderMap(VarBlock[][] blockMap) {
+        this.renderMap = blockMap;
     }
 
     public int getHeight(){
-        return blockMap.length;
+        return renderMap.length;
     }
 
     public int getWidth(){
-        return blockMap[0].length;
+        return renderMap[0].length;
     }
     
     public void loadMapFromBlockMap(BlockMap blockMap){
-        //TODO convert BlockMap to RenderMap with VarBlocks
+        int height = blockMap.getHeight();
+        int width = blockMap.getWidth();
+
+        for (int yBlock = 0; yBlock < height; yBlock++){
+            for (int xBlock = 0; xBlock < width; xBlock++) {
+                renderMap[yBlock][xBlock] = new VarBlock(BlockUtil.getBlock(blockMap.getBlockMap(yBlock, xBlock)));
+            }
+        }
     }
 
     public void setBlock(int yBlock, int xBlock, VarBlock block){
-        if (yBlock - 1 <= blockMap.length && xBlock - 1 <= blockMap[0].length){
-            blockMap[yBlock][xBlock] = block;
+        if (yBlock - 1 <= renderMap.length && xBlock - 1 <= renderMap[0].length){
+            renderMap[yBlock][xBlock] = block;
         } else {
             System.err.println("Invalid block position");
             System.err.println("Pixel Y: " + yBlock + ", X: " + xBlock);
@@ -49,8 +56,8 @@ public class RenderMap {
     }
 
     public VarBlock getBlock(int yBlock, int xBlock){
-        if (yBlock - 1 <= blockMap.length && xBlock - 1 <= blockMap[0].length){
-            return blockMap[yBlock][xBlock];
+        if (yBlock - 1 <= renderMap.length && xBlock - 1 <= renderMap[0].length){
+            return renderMap[yBlock][xBlock];
         } else {
             System.err.println("Invalid block position");
             System.err.println("Pixel Y: " + yBlock + ", X: " + xBlock);
@@ -59,9 +66,9 @@ public class RenderMap {
     }
 
     public void setBlockPixel(int yBlock, int xBlock, int yBlockPixel, int xBlockPixel, Color color){
-        if (yBlock - 1 <= blockMap.length && xBlock - 1 <= blockMap[0].length){
-            if (yBlockPixel > 0 && yBlockPixel <= 16 && xBlockPixel > 0 && xBlockPixel <= 16){
-                blockMap[yBlock][xBlock].setPixelColor(yBlockPixel, xBlockPixel, color);
+        if (yBlock - 1 <= renderMap.length && xBlock - 1 <= renderMap[0].length){
+            if (yBlockPixel >= 0 && yBlockPixel < 16 && xBlockPixel >= 0 && xBlockPixel < 16){
+                renderMap[yBlock][xBlock].setPixelColor(yBlockPixel, xBlockPixel, color);
             } else {
                 System.err.println("Invalid pixel position");
                 System.err.println("Pixel Y: " + yBlockPixel + ", X: " + xBlockPixel);
@@ -73,9 +80,9 @@ public class RenderMap {
     }
 
     public Color getBlockPixel(int yBlock, int xBlock, int yBlockPixel, int xBlockPixel){
-        if (yBlock - 1 <= blockMap.length && xBlock - 1 <= blockMap[0].length){
-            if (yBlockPixel > 0 && yBlockPixel <= 16 && xBlockPixel > 0 && xBlockPixel <= 16){
-                return blockMap[yBlock][xBlock].getPixelColor(yBlockPixel, xBlockPixel);
+        if (yBlock - 1 <= renderMap.length && xBlock - 1 <= renderMap[0].length){
+            if (yBlockPixel >= 0 && yBlockPixel < 16 && xBlockPixel >= 0 && xBlockPixel < 16){
+                return renderMap[yBlock][xBlock].getPixelColor(yBlockPixel, xBlockPixel);
             } else {
                 System.err.println("Invalid pixel position");
                 System.err.println("Pixel Y: " + yBlockPixel + ", X: " + xBlockPixel);

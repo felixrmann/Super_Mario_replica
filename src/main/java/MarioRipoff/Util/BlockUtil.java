@@ -1,4 +1,4 @@
-package MarioRipoff.Handler;
+package MarioRipoff.Util;
 
 import MarioRipoff.Model.Blocks.AirBlock;
 import MarioRipoff.Model.Blocks.Block;
@@ -10,7 +10,7 @@ import MarioRipoff.Model.Blocks.DirtBlock;
  * @since 2021 - June - 21
  */
 
-public class BlockHandler {
+public class BlockUtil {
 
     public static Block getBlock(char colorCode){
         switch (colorCode){

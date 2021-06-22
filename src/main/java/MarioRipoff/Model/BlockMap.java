@@ -13,9 +13,16 @@ public class BlockMap {
     private char[][] blockMap;
 
     public BlockMap(int width, int height){
-        blockMap = new char[height + 2][width + 2];
-        Arrays.fill(blockMap, ' ');
+        //TODO + 2
+        blockMap = new char[height][width];
+        for (int i = 0; i < height; i++) {
+            Arrays.fill(blockMap[i], ' ');
+        }
 
+        blockMap[7][0] = 'D';
+        blockMap[7][1] = 'D';
+        blockMap[7][2] = 'D';
+        blockMap[7][3] = 'D';
         blockMap[9][0] = 'D';
         blockMap[9][1] = 'D';
         blockMap[9][2] = 'D';
@@ -28,7 +35,15 @@ public class BlockMap {
         blockMap[9][9] = 'D';
     }
 
-    public char[][] getBlockMap() {
-        return blockMap;
+    public char getBlockMap(int yBlock, int xBlock){
+        return blockMap[yBlock][xBlock];
+    }
+
+    public int getHeight() {
+        return blockMap.length;
+    }
+
+    public int getWidth() {
+        return blockMap[0].length;
     }
 }

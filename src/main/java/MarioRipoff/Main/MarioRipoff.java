@@ -4,6 +4,8 @@ import MarioRipoff.Model.BlockMap;
 import MarioRipoff.Model.RenderMap;
 import MarioRipoff.View.BasicRenderer;
 import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -15,12 +17,20 @@ import javafx.stage.Stage;
 public class MarioRipoff extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         BlockMap blockMap = new BlockMap(10,10);
         RenderMap renderMap = new RenderMap(10,10);
-        BasicRenderer basicRenderer = new BasicRenderer(renderMap, 7);
+        renderMap.loadMapFromBlockMap(blockMap);
 
+        primaryStage.setTitle("First test");
+        primaryStage.setScene(new Scene(new Group(new BasicRenderer(renderMap, 7))));
+        primaryStage.setOnCloseRequest(event -> System.exit(0));
+        primaryStage.show();
+        primaryStage.centerOnScreen();
+        primaryStage.setResizable(false);
+
+        //TODO test other Loader classes
         /*
         JSONObject file = MapLoader.loadMap("test");
         System.out.println(file.get("mapName"));
@@ -29,6 +39,7 @@ public class MarioRipoff extends Application {
 
          */
 
+        //TODO do something with the screen size
         /*
         // getScreenSize() returns the size
         // of the screen in pixels
