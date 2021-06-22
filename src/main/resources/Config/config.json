@@ -1,3 +1,5 @@
 {
-
+  "pixelSize": 7,
+  "defaultMapHeight": 10,
+  "defaultMapWidth": 15
 }
