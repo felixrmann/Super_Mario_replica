@@ -3,6 +3,7 @@ package MarioRipoff.Model;
 import MarioRipoff.Loader.MapLoader;
 import MarioRipoff.Util.BlockUtil;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -33,8 +34,7 @@ public class BlockMap {
 
         Vector<Position> allPositions = getBlockPos();
 
-        for (int i = 0; i < allPositions.size(); i++) {
-            Position currentPos = allPositions.get(i);
+        for (Position currentPos : allPositions) {
             blockMap[currentPos.getyPosition()][currentPos.getxPosition()] = currentPos.getBlockShort();
         }
     }
@@ -48,12 +48,14 @@ public class BlockMap {
         JSONObject allArrayObject = (JSONObject) mainObject.get("mapData");
 
         for (char currBlock : allBlocks) {
-            JSONArray jsonArrayX = allArrayObject.getJSONArray(currBlock + "x");
-            JSONArray jsonArrayY = allArrayObject.getJSONArray(currBlock + "y");
+            try {
+                JSONArray jsonArrayX = allArrayObject.getJSONArray(currBlock + "x");
+                JSONArray jsonArrayY = allArrayObject.getJSONArray(currBlock + "y");
 
-            for (int j = 0; j < jsonArrayX.length(); j++) {
-                allPosition.add(new Position(currBlock, jsonArrayY.getInt(j), jsonArrayX.getInt(j)));
-            }
+                for (int j = 0; j < jsonArrayX.length(); j++) {
+                    allPosition.add(new Position(currBlock, jsonArrayY.getInt(j), jsonArrayX.getInt(j)));
+                }
+            } catch (JSONException ignored){}
         }
 
         return allPosition;

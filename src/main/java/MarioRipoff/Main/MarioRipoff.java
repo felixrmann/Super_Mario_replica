@@ -4,6 +4,7 @@ import MarioRipoff.Loader.MapLoader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -20,8 +21,11 @@ public class MarioRipoff extends Application {
         JSONObject object = MapLoader.loadMap("test");
         JSONObject object1 = (JSONObject) object.get("mapData");
         System.out.println(object1);
-        JSONArray jsonArray = object1.getJSONArray("Dx");
-        System.out.println(jsonArray);
+        try {
+            JSONArray jsonArray = object1.getJSONArray("Dt");
+            System.out.println(jsonArray);
+        } catch (JSONException ignored){}
+
 
         //TODO test other Loader classes
         /*
