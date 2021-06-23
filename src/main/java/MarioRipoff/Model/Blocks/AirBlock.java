@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class AirBlock extends Block{
 
-    private Color b = new Color(37, 167, 255);
+    private Color b = new Color(98, 183, 255);
 
     //16 * 16 color map
     Color[][] blockMap = new Color[16][16];

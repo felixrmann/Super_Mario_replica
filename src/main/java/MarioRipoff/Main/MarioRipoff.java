@@ -1,12 +1,10 @@
 package MarioRipoff.Main;
 
-import MarioRipoff.Model.BlockMap;
-import MarioRipoff.Model.RenderMap;
-import MarioRipoff.View.BasicRenderer;
+import MarioRipoff.Loader.MapLoader;
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * @author Felix Mann
@@ -19,16 +17,11 @@ public class MarioRipoff extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        BlockMap blockMap = new BlockMap(10,10);
-        RenderMap renderMap = new RenderMap(10,10);
-        renderMap.loadMapFromBlockMap(blockMap);
-
-        primaryStage.setTitle("First test");
-        primaryStage.setScene(new Scene(new Group(new BasicRenderer(renderMap, 7))));
-        primaryStage.setOnCloseRequest(event -> System.exit(0));
-        primaryStage.show();
-        primaryStage.centerOnScreen();
-        primaryStage.setResizable(false);
+        JSONObject object = MapLoader.loadMap("test");
+        JSONObject object1 = (JSONObject) object.get("mapData");
+        System.out.println(object1);
+        JSONArray jsonArray = object1.getJSONArray("Dx");
+        System.out.println(jsonArray);
 
         //TODO test other Loader classes
         /*

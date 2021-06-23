@@ -15,7 +15,6 @@ public class ColorUtil {
         int green = color.getGreen();
         int blue = color.getBlue();
         double opacity = color.getAlpha() / 255.0;
-        System.out.println(javafx.scene.paint.Color.rgb(red, green, blue, opacity));
         return javafx.scene.paint.Color.rgb(red, green, blue, opacity);
     }
 

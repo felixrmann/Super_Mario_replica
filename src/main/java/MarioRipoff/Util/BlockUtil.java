@@ -19,4 +19,10 @@ public class BlockUtil {
         }
     }
 
+    public static char[] getAllBlockShorts() {
+        return new char[]{
+                'D'
+        };
+    }
+
 }
