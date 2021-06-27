@@ -6,17 +6,23 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
+ * This class renders the renderMap.
+ * //TODO optimize this class
  * @author Felix Mann
  * @version 1.0
  * @since 2021 - June - 21
  */
-
 public class BasicRenderer extends Canvas {
 
     private GraphicsContext context = getGraphicsContext2D();
     private RenderMap renderMap;
     private int pixelSize;
 
+    /**
+     * Instantiates a new Basic renderer.
+     * @param renderMap the render map
+     * @param pixelSize the pixel size
+     */
     public BasicRenderer(RenderMap renderMap, int pixelSize){
         this.renderMap = renderMap;
         this.pixelSize = pixelSize;
@@ -27,6 +33,9 @@ public class BasicRenderer extends Canvas {
         draw();
     }
 
+    /**
+     * Draw.
+     */
     public void draw() {
         context.clearRect(0,0,getWidth(), getHeight());
         int height = renderMap.getHeight();
@@ -44,5 +53,4 @@ public class BasicRenderer extends Canvas {
         }
         context.save();
     }
-
 }

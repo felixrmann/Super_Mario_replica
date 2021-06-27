@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 public class AirBlock extends Block{
 
+    //the main color of the block
     private Color b = new Color(98, 183, 255);
 
     //16 * 16 color map
@@ -21,6 +22,7 @@ public class AirBlock extends Block{
      */
     public AirBlock() {
 
+        //fill the whole block with the main color
         for (int i = 0; i < 16; i++) {
             Arrays.fill(blockMap[i], b);
         }

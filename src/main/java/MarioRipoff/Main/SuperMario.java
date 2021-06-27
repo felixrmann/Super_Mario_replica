@@ -21,10 +21,10 @@ public class SuperMario extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        JSONObject map1Object = MapLoader.loadMap("test");
+        String mapName = "test";
 
-        BlockMap blockMap = new BlockMap("test", map1Object.getInt("mapWidth"), map1Object.getInt("mapHeight"));
-        RenderMap renderMap = new RenderMap(10,10);
+        BlockMap blockMap = new BlockMap(mapName, MapLoader.getMapWidth(mapName));
+        RenderMap renderMap = new RenderMap(MapLoader.getMapWidth(mapName));
         renderMap.loadMapFromBlockMap(blockMap);
 
         primaryStage.setTitle("First test");

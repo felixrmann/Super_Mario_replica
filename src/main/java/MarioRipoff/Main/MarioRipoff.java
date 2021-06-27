@@ -18,8 +18,7 @@ public class MarioRipoff extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        JSONObject object = MapLoader.loadMap("test");
-        JSONObject object1 = (JSONObject) object.get("mapData");
+        JSONObject object1 = MapLoader.getMapData("test");
         System.out.println(object1);
         try {
             JSONArray jsonArray = object1.getJSONArray("Dt");

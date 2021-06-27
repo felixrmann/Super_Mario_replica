@@ -1,6 +1,7 @@
 package MarioRipoff.Model.Blocks;
 
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  * @author Felix Mann
@@ -11,33 +12,20 @@ import java.awt.*;
 public class DirtBlock extends Block {
 
     //Colors
-    private Color b = new Color(138, 76, 0);
-    private Color g = new Color(33, 125, 19);
+    private Color b = new Color(83, 48, 10);
 
     //16 * 16 color map
-    Color[][] blockMap = new Color[][]{
-            {g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g},
-            {g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g},
-            {g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g},
-            {g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-            {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-    };
+    Color[][] blockMap = new Color[16][16];
 
     /**
      * constructor for a DirtBlock
      */
     public DirtBlock() {
+
+        for (int i = 0; i < 16; i++) {
+            Arrays.fill(blockMap[i], b);
+        }
+
         setBlockName("Dirt");
         setBlockShort('D');
         setBlockMap(blockMap);

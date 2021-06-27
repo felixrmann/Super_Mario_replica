@@ -1,5 +1,6 @@
 package MarioRipoff.Loader;
 
+import MarioRipoff.Model.Position;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class ConfigLoader {
      * returns the requested config data
      * @return the config data
      */
-    public static JSONObject loadPlayer(){
+    public static JSONObject loadConfig(){
         return new JSONObject(Objects.requireNonNull(loadFileString()));
     }
 
@@ -40,4 +41,20 @@ public class ConfigLoader {
         return null;
     }
 
+    /**
+     * returns the pixel size
+     * @return the pixelSize
+     */
+    public static int getPixelSize(){
+        return loadConfig().getInt("pixelSize");
+    }
+
+    /**
+     * returns the default map size
+     * @return the default map size (height, width)
+     */
+    public static Position getDefaultPixelHeight(){
+        JSONObject configObject = loadConfig();
+        return new Position(configObject.getInt("defaultMapHeight"), configObject.getInt("defaultMapWidth"));
+    }
 }

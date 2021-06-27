@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Vector;
 
 /**
+ * This class saves the blockMap, that means it saves on which position on the map is which kind of block. The blockMaps
+ * are loaded with the MapLoader
  * @author Felix Mann
  * @version 1.0
  * @since 2021 - June - 21
@@ -19,23 +21,27 @@ public class BlockMap {
 
     private char[][] blockMap;
     private String mapName;
-    private int width, height;
+    private int width;
 
-    public BlockMap(String mapName, int width, int height){
+    /**
+     * the constructor of a BlockMap
+     * @param mapName mapName
+     * @param width mapWidth
+     */
+    public BlockMap(String mapName, int width){
         this.mapName = mapName;
         this.width = width;
-        this.height = height;
 
         //TODO + 2 (only in render Map)
-        blockMap = new char[height][width];
-        for (int i = 0; i < height; i++) {
+        blockMap = new char[10][width];
+        for (int i = 0; i < 10; i++) {
             Arrays.fill(blockMap[i], ' ');
         }
 
         Vector<Position> allPositions = getBlockPos();
 
         for (Position currentPos : allPositions) {
-            blockMap[currentPos.getyPosition()][currentPos.getxPosition()] = currentPos.getBlockShort();
+            blockMap[currentPos.getYPosition()][currentPos.getXPosition()] = currentPos.getBlockShort();
         }
     }
 
@@ -44,8 +50,7 @@ public class BlockMap {
         Vector<Position> allPosition = new Vector<>();
 
         char[] allBlocks = BlockUtil.getAllBlockShorts();
-        JSONObject mainObject = MapLoader.loadMap(mapName);
-        JSONObject allArrayObject = (JSONObject) mainObject.get("mapData");
+        JSONObject allArrayObject = MapLoader.getMapData(mapName);
 
         for (char currBlock : allBlocks) {
             try {
@@ -61,14 +66,28 @@ public class BlockMap {
         return allPosition;
     }
 
+    /**
+     * Get block map char.
+     * @param yBlock the y block
+     * @param xBlock the x block
+     * @return the char
+     */
     public char getBlockMap(int yBlock, int xBlock){
         return blockMap[yBlock][xBlock];
     }
 
+    /**
+     * Gets height.
+     * @return the height
+     */
     public int getHeight() {
-        return height;
+        return 10;
     }
 
+    /**
+     * Gets width.
+     * @return the width
+     */
     public int getWidth() {
         return width;
     }
