@@ -28,7 +28,11 @@ public class BasicRenderer extends Canvas {
         this.pixelSize = pixelSize;
 
         setHeight(pixelSize * renderMap.getHeight() * 16);
-        setWidth(pixelSize * renderMap.getWidth() * 16);
+        if (renderMap.getWidth() > 15) {
+            setWidth(pixelSize * 15 * 16);
+        } else {
+            setWidth(pixelSize * renderMap.getWidth() * 16);
+        }
 
         draw();
     }
@@ -39,7 +43,7 @@ public class BasicRenderer extends Canvas {
     public void draw() {
         context.clearRect(0,0,getWidth(), getHeight());
         int height = renderMap.getHeight();
-        int width = renderMap.getWidth();
+        int width = 15;
 
         for (int yBlock = 0; yBlock < height; yBlock++) {
             for (int xBlock = 0; xBlock < width; xBlock++) {

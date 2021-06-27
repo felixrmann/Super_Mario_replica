@@ -25,7 +25,11 @@ public class MapLoader {
      * @param fileName fileName
      */
     public static void checkFile(String fileName){
-        if (!mapFile.getString("mapFileName").equals(fileName)){
+        if (!(mapFile == null)){
+            if (!mapFile.getString("mapFileName").equals(fileName)){
+                mapFile = loadMap(fileName);
+            }
+        } else {
             mapFile = loadMap(fileName);
         }
     }
