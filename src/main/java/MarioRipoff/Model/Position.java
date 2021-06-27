@@ -82,4 +82,32 @@ public class Position {
     public int getXPosition() {
         return xPosition;
     }
+
+    /**
+     * add yPosition + 1
+     */
+    public void addYPosition(){
+        yPosition++;
+    }
+
+    /**
+     * add xPosition + 1
+     */
+    public void addXPosition(){
+        xPosition++;
+    }
+
+    /**
+     * remove yPosition - 1
+     */
+    public void removeYPosition(){
+        yPosition--;
+    }
+
+    /**
+     * remove xPosition - 1
+     */
+    public void removeXPosition(){
+        xPosition--;
+    }
 }
